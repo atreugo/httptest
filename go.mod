@@ -1,6 +1,6 @@
 module github.com/atreugo/httptest
 
-go 1.14
+go 1.11
 
 require (
 	github.com/savsgio/atreugo/v11 v11.0.1
