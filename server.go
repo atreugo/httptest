@@ -35,10 +35,10 @@ func AssertView(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assert
 	select {
 	case err := <-ch:
 		if err != nil {
-			t.Fatalf("return error %s", err)
+			t.Fatalf("Serve connection error: %v", err)
 		}
-	case <-time.After(30000 * time.Millisecond):
-		t.Fatalf("timeout")
+	case <-time.After(100 * time.Millisecond):
+		t.Fatalf("Serve connection timeout")
 	}
 
 	br := bufio.NewReader(&conn.w)
