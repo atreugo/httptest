@@ -12,11 +12,9 @@ import (
 func AssertView(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assertFn func(resp *fasthttp.Response)) {
 	s := &fasthttp.Server{
 		Handler: func(ctx *fasthttp.RequestCtx) {
-			actx := &atreugo.RequestCtx{
-				RequestCtx: ctx,
-			}
-
+			actx := atreugo.AcquireRequestCtx(ctx)
 			fnView(actx)
+			atreugo.ReleaseRequestCtx(actx)
 		},
 	}
 
@@ -25,9 +23,11 @@ func AssertView(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assert
 	if len(req.Header.Host()) == 0 {
 		req.Header.SetHost("http-server.test")
 	}
+
 	req.WriteTo(&conn.r)
 
 	ch := make(chan error, 1)
+
 	go func() {
 		ch <- s.ServeConn(conn)
 	}()
