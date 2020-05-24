@@ -13,7 +13,7 @@ func AssertView(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assert
 	s := &fasthttp.Server{
 		Handler: func(ctx *fasthttp.RequestCtx) {
 			actx := atreugo.AcquireRequestCtx(ctx)
-			fnView(actx)
+			fnView(actx) // nolint:errcheck
 			atreugo.ReleaseRequestCtx(actx)
 		},
 	}
@@ -24,7 +24,7 @@ func AssertView(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assert
 		req.Header.SetHost("http-server.test")
 	}
 
-	req.WriteTo(&conn.r)
+	req.WriteTo(&conn.r) // nolint:errcheck
 
 	ch := make(chan error, 1)
 
@@ -43,7 +43,7 @@ func AssertView(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assert
 
 	br := bufio.NewReader(&conn.w)
 	resp := new(fasthttp.Response)
-	resp.Read(br)
+	resp.Read(br) // nolint:errcheck
 
 	assertFn(resp)
 }
