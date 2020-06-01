@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atreugo/httptest"
+	"github.com/atreugo/mock"
 	"github.com/savsgio/atreugo/v11"
 	"github.com/valyala/fasthttp"
 )
@@ -19,7 +19,7 @@ func View(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assertFn fun
 		},
 	}
 
-	conn := new(httptest.MockConn)
+	conn := new(mock.Conn)
 
 	if len(req.Header.Host()) == 0 {
 		req.Header.SetHost("http-server.test")
