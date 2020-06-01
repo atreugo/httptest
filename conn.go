@@ -9,34 +9,42 @@ var zeroTCPAddr = &net.TCPAddr{
 	IP: net.IPv4zero,
 }
 
-func (conn *mockConn) Close() error {
-	return nil
+func (conn *MockConn) Close() error {
+	return conn.ErrClose
 }
 
-func (conn *mockConn) Read(b []byte) (int, error) {
-	return conn.r.Read(b)
+func (conn *MockConn) Read(b []byte) (int, error) {
+	if conn.ErrRead != nil {
+		return 0, conn.ErrRead
+	}
+
+	return conn.RBuff.Read(b)
 }
 
-func (conn *mockConn) Write(b []byte) (int, error) {
-	return conn.w.Write(b)
+func (conn *MockConn) Write(b []byte) (int, error) {
+	if conn.ErrWrite != nil {
+		return 0, conn.ErrWrite
+	}
+
+	return conn.WBuff.Write(b)
 }
 
-func (conn *mockConn) RemoteAddr() net.Addr {
+func (conn *MockConn) RemoteAddr() net.Addr {
 	return zeroTCPAddr
 }
 
-func (conn *mockConn) LocalAddr() net.Addr {
+func (conn *MockConn) LocalAddr() net.Addr {
 	return zeroTCPAddr
 }
 
-func (conn *mockConn) SetDeadline(t time.Time) error {
-	return nil
+func (conn *MockConn) SetDeadline(t time.Time) error {
+	return conn.ErrSetDeadline
 }
 
-func (conn *mockConn) SetReadDeadline(t time.Time) error {
-	return nil
+func (conn *MockConn) SetReadDeadline(t time.Time) error {
+	return conn.ErrSetReadDeadline
 }
 
-func (conn *mockConn) SetWriteDeadline(t time.Time) error {
-	return nil
+func (conn *MockConn) SetWriteDeadline(t time.Time) error {
+	return conn.ErrSetWriteDeadline
 }

@@ -18,13 +18,15 @@ func AssertView(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assert
 		},
 	}
 
-	conn := new(mockConn)
+	conn := new(MockConn)
 
 	if len(req.Header.Host()) == 0 {
 		req.Header.SetHost("http-server.test")
 	}
 
-	req.WriteTo(&conn.r) // nolint:errcheck
+	if _, err := req.WriteTo(&conn.RBuff); err != nil {
+		panic(err)
+	}
 
 	ch := make(chan error, 1)
 
@@ -41,9 +43,12 @@ func AssertView(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assert
 		t.Fatalf("Serve connection timeout")
 	}
 
-	br := bufio.NewReader(&conn.w)
+	br := bufio.NewReader(&conn.WBuff)
 	resp := new(fasthttp.Response)
-	resp.Read(br) // nolint:errcheck
+
+	if err := resp.Read(br); err != nil {
+		panic(err)
+	}
 
 	assertFn(resp)
 }
