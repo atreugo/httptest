@@ -1,15 +1,16 @@
-package httptest
+package assert
 
 import (
 	"bufio"
 	"testing"
 	"time"
 
+	"github.com/atreugo/httptest"
 	"github.com/savsgio/atreugo/v11"
 	"github.com/valyala/fasthttp"
 )
 
-func AssertView(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assertFn func(resp *fasthttp.Response)) {
+func View(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assertFn func(resp *fasthttp.Response)) {
 	s := &fasthttp.Server{
 		Handler: func(ctx *fasthttp.RequestCtx) {
 			actx := atreugo.AcquireRequestCtx(ctx)
@@ -18,7 +19,7 @@ func AssertView(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assert
 		},
 	}
 
-	conn := new(MockConn)
+	conn := new(httptest.MockConn)
 
 	if len(req.Header.Host()) == 0 {
 		req.Header.SetHost("http-server.test")

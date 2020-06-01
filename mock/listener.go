@@ -1,4 +1,4 @@
-package httptest
+package mock
 
 import "net"
 
