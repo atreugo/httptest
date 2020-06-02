@@ -11,20 +11,14 @@ import (
 )
 
 func View(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assertFn func(resp *fasthttp.Response)) {
-	s := &fasthttp.Server{
-		Handler: func(ctx *fasthttp.RequestCtx) {
-			actx := atreugo.AcquireRequestCtx(ctx)
-			fnView(actx) // nolint:errcheck
-			atreugo.ReleaseRequestCtx(actx)
-		},
+	s := atreugo.New(atreugo.Config{})
+	s.Path(string(req.Header.Method()), string(req.URI().PathOriginal()), fnView)
+
+	if len(req.URI().Host()) == 0 {
+		req.SetHost("http://http-server.test")
 	}
 
 	conn := new(mock.Conn)
-
-	if len(req.Header.Host()) == 0 {
-		req.Header.SetHost("http-server.test")
-	}
-
 	if _, err := req.WriteTo(&conn.RBuff); err != nil {
 		panic(err)
 	}
