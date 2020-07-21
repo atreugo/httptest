@@ -6,8 +6,8 @@ github.com/fasthttp/router v1.2.3 h1:wdhfeMjofXrij5Uhla+RwKqJTplmjyVbBDURdrMVEGE
 github.com/fasthttp/router v1.2.3/go.mod h1:Au2V1CaqqAdzQQcPKrbkFAsImd1aHpadrce21AIPnvE=
 github.com/klauspost/compress v1.10.7 h1:7rix8v8GpI3ZBb0nSozFRgbtXKv+hOe+qfEpZqybrAg=
 github.com/klauspost/compress v1.10.7/go.mod h1:aoV0uJVorq1K+umq18yTdKaF57EivdYsUV+/s2qKfXs=
-github.com/savsgio/atreugo/v11 v11.4.2 h1:BuT3VXqnZmpVFEvO3wZ4835YooqqcLMdPDSPmTlGIUY=
-github.com/savsgio/atreugo/v11 v11.4.2/go.mod h1:kNzNQ6Hu2THV8otZd7wsTGMzCiVrKnBnFIJhEoaakdc=
+github.com/savsgio/atreugo/v11 v11.4.3 h1:wUFN9nnVzTi4ByrCwAeQpG3WzL4w3UXaW+FJUVBewhY=
+github.com/savsgio/atreugo/v11 v11.4.3/go.mod h1:kNzNQ6Hu2THV8otZd7wsTGMzCiVrKnBnFIJhEoaakdc=
 github.com/savsgio/go-logger/v2 v2.0.1 h1:MgmsI5hnQFz0n5oX1Do/T9DldTo60guQTGwlRpzk0mk=
 github.com/savsgio/go-logger/v2 v2.0.1/go.mod h1:fog+sZsg75Or4EENyd1jrS/Ps44s39hd6lccqALz0C8=
 github.com/savsgio/gotils v0.0.0-20200616100644-13ff1fd2c28c h1:KKqhycXW1WVNkX7r4ekTV2gFkbhdyihlWD8c0/FiWmk=
