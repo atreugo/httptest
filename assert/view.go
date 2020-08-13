@@ -8,7 +8,7 @@ import (
 )
 
 func View(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assertFn func(resp *fasthttp.Response)) {
-	s := atreugo.New(atreugo.Config{})
+	s := atreugo.New(atreugo.Config{LogLevel: "fatal"})
 	s.Path(string(req.Header.Method()), string(req.URI().PathOriginal()), fnView)
 
 	Path(t, req, s, assertFn)
