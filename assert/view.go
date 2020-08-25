@@ -11,5 +11,5 @@ func View(t *testing.T, req *fasthttp.Request, fnView atreugo.View, assertFn fun
 	s := atreugo.New(atreugo.Config{LogLevel: "fatal"})
 	s.Path(string(req.Header.Method()), string(req.URI().PathOriginal()), fnView)
 
-	Path(t, req, s, assertFn)
+	Server(t, req, s, assertFn)
 }

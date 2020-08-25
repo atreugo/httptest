@@ -19,7 +19,7 @@ func Test_Path(t *testing.T) {
 		return ctx.TextResponse(body)
 	})
 
-	Path(t, req, s, func(resp *fasthttp.Response) {
+	Server(t, req, s, func(resp *fasthttp.Response) {
 		if string(resp.Body()) != body {
 			t.Errorf("Response.Body == %s, want %s", resp.Body(), body)
 		}

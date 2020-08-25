@@ -10,7 +10,7 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-func Path(t *testing.T, req *fasthttp.Request, s *atreugo.Atreugo, assertFn func(resp *fasthttp.Response)) {
+func Server(t *testing.T, req *fasthttp.Request, s *atreugo.Atreugo, assertFn func(resp *fasthttp.Response)) {
 	if len(req.URI().Host()) == 0 {
 		req.SetHost("http://http-server.test")
 	}
