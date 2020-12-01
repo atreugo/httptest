@@ -8,6 +8,8 @@ import (
 )
 
 func Test_View(t *testing.T) {
+	t.Parallel()
+
 	body := "TEST"
 
 	req := fasthttp.AcquireRequest()

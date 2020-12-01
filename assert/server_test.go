@@ -8,6 +8,8 @@ import (
 )
 
 func Test_Path(t *testing.T) {
+	t.Parallel()
+
 	body := "TEST"
 
 	req := fasthttp.AcquireRequest()
