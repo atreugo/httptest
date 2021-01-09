@@ -11,6 +11,8 @@ import (
 )
 
 func Server(t *testing.T, req *fasthttp.Request, s *atreugo.Atreugo, assertFn func(resp *fasthttp.Response)) {
+	t.Helper()
+
 	if len(req.URI().Host()) == 0 {
 		req.SetHost("http://http-server.test")
 	}
