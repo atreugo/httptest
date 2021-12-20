@@ -7,3 +7,7 @@ linters:
     - testpackage
     - goerr113
     - exhaustivestruct
+    - paralleltest
+    - nolintlint
+    - cyclop
+    - varnamelen
