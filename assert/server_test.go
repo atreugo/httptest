@@ -18,7 +18,7 @@ func Test_Path(t *testing.T) {
 
 	s := atreugo.New(atreugo.Config{})
 	s.GET("/test", func(ctx *atreugo.RequestCtx) error {
-		return ctx.TextResponse(body)
+		return ctx.TextResponse(body) // nolint:wrapcheck
 	})
 
 	Server(t, req, s, func(resp *fasthttp.Response) {

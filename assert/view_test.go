@@ -17,7 +17,7 @@ func Test_View(t *testing.T) {
 	req.SetRequestURI("/test")
 
 	handler := func(ctx *atreugo.RequestCtx) error {
-		return ctx.TextResponse(body)
+		return ctx.TextResponse(body) // nolint:wrapcheck
 	}
 
 	View(t, req, handler, func(resp *fasthttp.Response) {

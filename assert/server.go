@@ -14,7 +14,7 @@ func Server(t *testing.T, req *fasthttp.Request, s *atreugo.Atreugo, assertFn fu
 	t.Helper()
 
 	if len(req.URI().Host()) == 0 {
-		req.SetHost("http://http-server.test")
+		req.SetHost("http-server.test")
 	}
 
 	conn := new(mock.Conn)
