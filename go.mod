@@ -3,7 +3,7 @@ module github.com/atreugo/httptest
 go 1.15
 
 require (
-	github.com/atreugo/mock v0.0.0-20200601091009-13c275b330b0
-	github.com/savsgio/atreugo/v11 v11.8.4
-	github.com/valyala/fasthttp v1.31.0
+	github.com/atreugo/mock v0.0.0-20220914113750-b8b2949eb59e
+	github.com/savsgio/atreugo/v11 v11.9.7
+	github.com/valyala/fasthttp v1.40.0
 )
